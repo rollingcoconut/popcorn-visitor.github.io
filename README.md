@@ -1,10 +1,15 @@
-## Welcome to GitHub Pages
+## Exploring the Popcorn Linux ISA-heterogeneous Operating system
 
-You can use the [editor on GitHub](https://github.com/rollingcoconut/popcorn-visitor.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+[PopcornLinux](http://www.popcornlinux.org/index.php/overview) is a developing Operating System that can run transparently over a heterogeneous set of kernels (x68/arm)  on heterogeneous machines. The different kernels communicate entirely through message passing. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+We wanted to take this developing Operating System for a test-drive and get a feel for message latency first hand. Here we document the the additional steps we needed to follow along with the tutorial, as well as the experiment we performed once we got things running. 
 
-### Markdown
+Popcorn Linux tutorial:https://github.com/ssrg-vt/popcorn-compiler/tree/main/tutorial/sosp-2019
+
+
+### Starting up Popcorn Linux 
+
+### Experimentation
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
