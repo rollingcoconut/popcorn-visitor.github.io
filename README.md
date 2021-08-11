@@ -30,7 +30,7 @@ Since the two instances were required to communicate with each other, we also ha
 
 - Confirmed ssh service was running on both machines
 ```
-sudo servic ssh status
+sudo service ssh status
 # sudo service ssh start
 ```
 
@@ -76,14 +76,14 @@ Using the provided __popcornhelloS.c__ program,  the popcorn compiler creates bi
 
 The tutorial includes this rather helpful image of the merged binaries
 
-(_taken from popcorn linux tutorial_)
+(_image taken from popcorn linux tutorial_)
 ![image](https://user-images.githubusercontent.com/17166431/128949977-a8273c25-0994-4d63-8bb2-fd70006949ca.png)
 
 
 
 and this image of Process migration between kernels.
 
-(_taken from popcorn linux tutorial_)
+(_image taken from popcorn linux tutorial_)
 ![image](https://user-images.githubusercontent.com/17166431/128950038-a78df103-914e-4fee-8862-64e1f8a5a6d3.png)
 
 
@@ -96,6 +96,53 @@ as well as the dmesg kernel buffer log.
 
 
 ### Experimentation
+
+A distributed kernel Operting System can offer interesting benefits. Robert Lyerly writes in his dissertation for Popcorn Linux that CPUs with different ISAs offer varied benefits (power efficiency, performance); the capacity to migrate applications across heterogeneous-ISA CPUs can allow for "optimizing a variety of workloads."
+
+"Application migration allows the system software to optimize how a given workload executes in the system to best utilize the available compute resources, e.g., placing applications in consideration of architectural characteristics or multiprogrammed environments."[[1]](https://vtechworks.lib.vt.edu/bitstream/handle/10919/100599/Lyerly_RF_D_2019.pdf?sequence=1&isAllowed=y)
+
+
+Instead of migrating (ie kernel hopping) applications, Popcorn Linux also allows developers to migrate pthreads. Migrating user process threads across kernels is highly fascinating as it is not yet a usual load balancing paradigm. 
+
+With that in mind, we wanted to test a very simple hypothysis: 
+- Running N user process pthreads over several popcorn-kernels should be more effective than running N user process pthreads on only one popcorn kernel for compute intensive jobs.
+
+![Screenshot from 2021-08-11 00-08-50](https://user-images.githubusercontent.com/17166431/128968380-79bd62ab-604a-4be2-bc43-f7f658982c10.png)
+
+To test our hypothysis we created a number counting job where the number of threads and load per thread were configurable. As we increased the load we expected to see the jobs with more threads behave about the same when running on only one virtual machine -- threads don't help the performance when you only have one core.
+
+When we allowed the number-counting job to "migrate threads" and balance them across the two VMs, we expected to see improved performance that we understood would be offset by the cost of message passing between the two kernels.  
+
+
+#### Observations
+
+We did not observe the expected behaviour. While we don't deny the fact that it could just have been our setup not being powerful enough, we made some some observations during testing.
+
+1. The x86 machine consistently took longer to run the compiled number crunching code.
+2. The implied procedure to migrate user threads was to kill the thread with a 35 signal. 
+
+(_image taken from popcorn linux tutorial_)
+
+![Screenshot from 2021-08-11 14-52-55](https://user-images.githubusercontent.com/17166431/129086448-a6eb0aed-a829-4fc7-aee4-d5e84da0374f.png)
+
+Initially we migrated threads manually, issuing a 35 signal to half of the created pthreads on the ARM-popcorn VM. When the compute load was large, the popcorn-compiled program on the ARM VM often went into a defunct state.
+
+
+While we initially ended on using the tutorial thread scheduler migrate threads for us, we noticed the same breakibg 
+
+
+
+![Screenshot from 2021-08-11 14-46-23](https://user-images.githubusercontent.com/17166431/129085663-ef07407a-c913-4ebe-8a60-9a91868bff12.png)
+
+![Screenshot from 2021-08-11 14-41-03](https://user-images.githubusercontent.com/17166431/129085435-7f65c782-debf-43a7-842a-dec2675654c0.png)
+
+![Screenshot from 2021-08-11 14-42-49](https://user-images.githubusercontent.com/17166431/129085447-a9b6bb04-ef4f-4154-930c-18934c6b2708.png)
+
+
+### References
+[1](https://vtechworks.lib.vt.edu/bitstream/handle/10919/100599/Lyerly_RF_D_2019.pdf?sequence=1&isAllowed=y) R. F. Lyerly, “Popcorn linux: A compiler and runtime for state transformation between heterogeneous-ISA architectures,” Ph.D. dissertation, 2016. [Online]. Available: http://www.ssrg.ece.vt.edu/ theses/PhdProposal Lyerly.pdf
+
+
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
