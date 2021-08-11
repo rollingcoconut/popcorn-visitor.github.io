@@ -41,13 +41,13 @@ It's worth noting that in VirtualBox the default gateway is assigned 10.0.2.2, a
 
 __X86 popcorn__
 ```
-sudo ifconfig enps0s3 10.0.2.16 netmask 255.255.255.0                  
+sudo ifconfig enp0s3 10.0.2.16 netmask 255.255.255.0                  
 sudo route add default gw 10.0.2.2 enp0s3 
 ```
 
 __ARM popcorn__
 ```
-sudo ifconfig enps0s1 10.0.2.17 netmask 255.255.255.0                  
+sudo ifconfig enp0s1 10.0.2.17 netmask 255.255.255.0                  
 sudo route add default gw 10.0.2.2 enp0s1
 ```
 
@@ -118,8 +118,8 @@ When we allowed the number-counting job to "migrate threads" and balance them ac
 
 We did not observe the expected behaviour. While we don't deny the fact that it could just have been our setup not being powerful enough, we made some some observations during testing.
 
-1. The x86 machine consistently took longer to run the compiled number crunching code.
-2. The implied procedure to migrate user threads was to kill the thread with a 35 signal. 
+1. The x86 machine consistently took longer to run the compiled number crunching code
+2. The reccommended migration procedure corrupted the C program when dealing with larger compute loads 
 
 (_image taken from popcorn linux tutorial_)
 
