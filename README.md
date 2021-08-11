@@ -153,5 +153,5 @@ We none the less had a blast playing with the Popcorn Linux Operating System.
 
 
 ### References
-[1](https://vtechworks.lib.vt.edu/bitstream/handle/10919/100599/Lyerly_RF_D_2019.pdf?sequence=1&isAllowed=y) R. F. Lyerly, “Popcorn linux: A compiler and runtime for state transformation between heterogeneous-ISA architectures,” Ph.D. dissertation, 2016. [Online]. Available: http://www.ssrg.ece.vt.edu/ theses/PhdProposal Lyerly.pdf
+[1](https://vtechworks.lib.vt.edu/bitstream/handle/10919/100599/Lyerly_RF_D_2019.pdf?sequence=1&isAllowed=y) R. F. Lyerly, “Popcorn linux: A compiler and runtime for state transformation between heterogeneous-ISA architectures,” Ph.D. dissertation, 2016. [Online]. Available: https://vtechworks.lib.vt.edu/bitstream/handle/10919/100599/Lyerly_RF_D_2019.pdf
 
