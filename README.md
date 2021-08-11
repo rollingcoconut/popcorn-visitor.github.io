@@ -127,6 +127,8 @@ We did not observe the expected behaviour. While we don't deny the fact that it 
 
 Initially we migrated threads manually, issuing a 35 signal to half of the created pthreads on the ARM-popcorn VM. When the compute load was large, the popcorn-compiled program on the ARM VM often went into a defunct state.
 
+![image](https://user-images.githubusercontent.com/17166431/129086959-9dc2e9fd-f5b6-4c78-9631-d10b90104c04.png)
+
 
 While we initially ended on using the tutorial thread scheduler migrate threads for us, we noticed the same breakibg 
 
