@@ -134,7 +134,7 @@ This behaviour persisted even when using the thread migration scheduler provided
 When migration is enabled, the program crashes on the ARM machine when the compute load exceeded 80K weighted operations. 
 
 
-![Screenshot from 2021-08-11 14-46-23](https://user-images.githubusercontent.com/17166431/129085663-ef07407a-c913-4ebe-8a60-9a91868bff12.png)
+![Screenshot from 2021-08-11 16-37-57](https://user-images.githubusercontent.com/17166431/129099782-ab04fbe0-de14-4571-bb84-b1e015bcf850.png)
 
 ![Screenshot from 2021-08-11 14-41-03](https://user-images.githubusercontent.com/17166431/129085435-7f65c782-debf-43a7-842a-dec2675654c0.png)
 
