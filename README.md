@@ -1,7 +1,7 @@
 ## Exploring the Popcorn Linux Operating system
 ### A distributed kernel OS supporting heterogeneous architecture
 
-[PopcornLinux](http://www.popcornlinux.org/index.php/overview) is a developing Operating System that can run transparently over a heterogeneous set of kernels (x68/arm)  on heterogeneous architecture. The different kernels communicate entirely through message passing, and allow both kernel and process threads to be "migrated" from one kernel to another, even when the kernels are located on machines of different ISAs. 
+[PopcornLinux](http://www.popcornlinux.org/index.php/overview) is a developing Operating System that can run transparently over a heterogeneous set of kernels (x68/arm)  on heterogeneous architecture. The different kernels communicate entirely through message passing, and allow entire applications as well as user process threads to be "migrated" from one kernel to another, even when the kernels are located on machines of different ISAs. 
 
 We wanted to take this developing Operating System for a test-drive and get a feel for message latency, popcorn development struggles, and the very cool experience of using **distributed kernels** first hand. Here we document the the additional steps we needed to follow along with the tutorial, as well as the experiment we performed once we got things running. 
 
@@ -69,6 +69,30 @@ After installing the messaging module into the kernel, each instance can identif
 
 
 At this point we had two working instances of Popcorn Linux (one running ARM ISA, the other x86), and were able to perform a popcorn hello. 
+
+__Hello Popcorn__
+
+Using the provided __popcornhelloS.c__ program,  the popcorn compiler creates binaries for both architectures then scp's the arm binary to the arm-popcorn instance. The _entire_ "hello world" process (including user and kernel state threads) is then continually programmed to run back and forth between each kernel. 
+
+The tutorial includes this rather helpful image of the merged binaries
+
+(_taken from popcorn linux tutorial_)
+![image](https://user-images.githubusercontent.com/17166431/128949977-a8273c25-0994-4d63-8bb2-fd70006949ca.png)
+
+
+
+and this image of Process migration between kernels.
+
+(_taken from popcorn linux tutorial_)
+![image](https://user-images.githubusercontent.com/17166431/128950038-a78df103-914e-4fee-8862-64e1f8a5a6d3.png)
+
+
+Our popcorn-hello program output is below 
+
+![image](https://user-images.githubusercontent.com/17166431/128950134-2c31c99c-bebd-4bdf-8741-c3dfb5df0852.png)
+
+as well as the dmesg kernel buffer log.
+![image](https://user-images.githubusercontent.com/17166431/128950153-c938a24e-b397-4e5f-ac46-ff28c5285c9e.png)
 
 
 ### Experimentation
