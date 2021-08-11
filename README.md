@@ -129,9 +129,9 @@ Initially we migrated threads manually, issuing a 35 signal to half of the creat
 
 ![image](https://user-images.githubusercontent.com/17166431/129086959-9dc2e9fd-f5b6-4c78-9631-d10b90104c04.png)
 
+This behaviour persisted even when using the thread migration scheduler provided in the tutorial.
 
-While we initially ended on using the tutorial thread scheduler migrate threads for us, we noticed the same breakibg 
-
+When migration is enabled, the program crashes on the ARM machine when the compute load exceeded 80K weighted operations. 
 
 
 ![Screenshot from 2021-08-11 14-46-23](https://user-images.githubusercontent.com/17166431/129085663-ef07407a-c913-4ebe-8a60-9a91868bff12.png)
@@ -140,38 +140,18 @@ While we initially ended on using the tutorial thread scheduler migrate threads 
 
 ![Screenshot from 2021-08-11 14-42-49](https://user-images.githubusercontent.com/17166431/129085447-a9b6bb04-ef4f-4154-930c-18934c6b2708.png)
 
+While we cannot precisely explain why the x86 VM ran more slowly than the ARM machine, we think it is safe to assume that having the migration scheduler run on the x68 VM could have contributed latency.
+
+We also suspect that just killing a thread to force pthread migration was not sufficient to keep program stability -- something was happening during the popcorn thread kill and/or popcorn thread migration that brought down the whole program.
+
+
+### Conclusion
+
+The tutorial followed and modified for experimentation was produced in 2019. It is possible that work has been done on this developing Operating System since then to enable safer pthread migration, or alternate reccommendations made on how to migrate pthreads.
+
+We none the less had a blast playing with the Popcorn Linux Operating System.  
+
 
 ### References
 [1](https://vtechworks.lib.vt.edu/bitstream/handle/10919/100599/Lyerly_RF_D_2019.pdf?sequence=1&isAllowed=y) R. F. Lyerly, “Popcorn linux: A compiler and runtime for state transformation between heterogeneous-ISA architectures,” Ph.D. dissertation, 2016. [Online]. Available: http://www.ssrg.ece.vt.edu/ theses/PhdProposal Lyerly.pdf
 
-
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/rollingcoconut/popcorn-visitor.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
