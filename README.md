@@ -1,4 +1,9 @@
 ## Exploring the Popcorn Linux Operating system
+
+# FINAL ClASS POWERPOINT PRESENTATION ON NYU STREAM
+https://stream.nyu.edu/media/1_pqr6a0tg
+
+
 ### A distributed kernel OS supporting heterogeneous architecture
 
 [PopcornLinux](http://www.popcornlinux.org/index.php/overview) is a developing Operating System that can run transparently over a heterogeneous set of kernels (x68/arm)  on heterogeneous architecture. The different kernels communicate entirely through message passing, and allow entire applications as well as user process threads to be "migrated" from one kernel to another, even when the kernels are located on machines of different ISAs. 
