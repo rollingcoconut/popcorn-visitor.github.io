@@ -1,6 +1,6 @@
 ## Exploring the Popcorn Linux Operating system
 
-# FINAL ClASS POWERPOINT PRESENTATION ON NYU STREAM
+# FINAL CLASS POWERPOINT PRESENTATION ON NYU STREAM
 https://stream.nyu.edu/media/1_pqr6a0tg
 
 
